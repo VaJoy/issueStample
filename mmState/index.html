@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <title>路由系统</title>
+      <script src="avalon.js"></script>
+      <script src="jq.js"></script>
+    </head>
+    <body >
+      <div id="topLayer" ms-controller="topLayer">
+        <header>
+          <h1>视图头部</h1>
+        </header>
+        <div class="wrap" ms-view></div>
+      </div>
+
+      <script>
+        require(["mmState"], function() {
+
+          var vm = avalon.define({
+            $id: "topLayer"
+          });
+
+          avalon.state("states", {
+            controller: "topLayer",
+            url: "/{itemName}",
+            onAfterLoad: function() {
+
+            },
+            views: {
+              "": {
+                templateUrl: function (params) {
+                  return (params.itemName || 'home') + '.html';
+                }
+              }
+            }
+          });
+
+          avalon.history.start();
+          avalon.scan()
+        })
+      </script>
+    </body>
+</html>

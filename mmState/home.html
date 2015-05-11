@@ -1,0 +1,24 @@
+<div ms-controller="home" id="home" style="background: yellow;">
+  <a href="#!/temp">点此跳到temp</a>
+  <ul>
+    <li ms-repeat="list">{{el}}</li>
+  </ul>
+</div>
+    <script>
+      require(["avalon"], function() {
+
+        $.ajax({url:'data.json',
+          success:function(data){
+            var vm = avalon.define({
+              $id : 'home',
+              list : data
+            });
+
+            avalon.scan(document.getElementById('home'))
+        }});
+
+
+      });
+
+
+    </script>
